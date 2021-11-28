@@ -3,10 +3,16 @@ import { Route, Routes, Navigate } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
+// Components
 import Header from './components/header/header.component';
+
+// Pages
 import HomePage from './pages/homepage/homepage.component';
 import Shop from './pages/shop/shop.component';
 import SignInAndSignUp from './pages/sign-in-and-sign-up/sign-in-and-sign-up.component';
+import Checkout from './pages/checkout/checkout.component';
+
+// Other
 import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 import { setCurrentUser } from './redux/user/user.actions';
 import { selectCurrentUser } from './redux/user/user.selectors';
@@ -64,12 +70,13 @@ class App extends React.Component {
       <div>
         <Header />
         <Routes>
-          <Route path='/' element={<HomePage />} />
-          <Route path='/shop' element={<Shop />} />
+          <Route path='/' element={ <HomePage /> } />
+          <Route path='/shop' element={ <Shop /> } />
           <Route 
             path='/signin'
-            element={ this.props.currentUser ? <Navigate replace to='/' /> : <SignInAndSignUp />} 
+            element={ this.props.currentUser ? <Navigate replace to='/' /> : <SignInAndSignUp /> } 
           />
+          <Route path='/checkout' element={ <Checkout /> } />
         </Routes>
       </div>
     );
